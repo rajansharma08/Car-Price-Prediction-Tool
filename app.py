@@ -3,9 +3,12 @@ import numpy as np
 import pickle as pk 
 import streamlit as st
 import base64
+from pathlib import Path
 
-# Load model
-model = pk.load(open('Model\model.pkl', 'rb'))
+# Load model (use Path to avoid backslash escape warnings)
+BASE_DIR = Path(__file__).resolve().parent
+model_path = BASE_DIR / "Model" / "model.pkl"
+model = pk.load(open(model_path, "rb"))
 
 # Function to Encode Image to Base64
 def get_base64(file):
